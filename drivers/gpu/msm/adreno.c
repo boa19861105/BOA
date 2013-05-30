@@ -252,7 +252,7 @@ static void adreno_iommu_setstate(struct kgsl_device *device,
 					uint32_t flags)
 {
 	unsigned int pt_val, reg_pt_val;
-	unsigned int link[250];
+	unsigned int link[230];
 	unsigned int *cmds = &link[0];
 	int sizedwords = 0;
 	struct adreno_device *adreno_dev = ADRENO_DEVICE(device);
@@ -1747,8 +1747,8 @@ static long adreno_ioctl(struct kgsl_device_private *dev_priv,
 
 static inline s64 adreno_ticks_to_us(u32 ticks, u32 gpu_freq)
 {
-	gpu_freq /= 1000000;
-	return ticks / gpu_freq;
+	s64 ticksus = (s64)ticks*1000000;
+	return div_u64(ticksus, gpu_freq);
 }
 
 static void adreno_power_stats(struct kgsl_device *device,

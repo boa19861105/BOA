@@ -2,6 +2,9 @@
 # Makefile for the linux kernel.
 #
 
+CFLAGS_sysctl.o += -O1
+CFLAGS_workqueue.o += -O2
+
 obj-y                          := main.o version.o mounts.o
 ifneq ($(CONFIG_BLK_DEV_INITRD),y)
 obj-y                          += noinitramfs.o

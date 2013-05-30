@@ -2871,7 +2871,7 @@ static void decrease_usb_ma_value(int *value)
 		if (i > 0)
 			i--;
 		if (i >= 0)
-			*value = usb_ma_table[i].usb_ma;
+			*value = usb_ma_table[i].usb_ma = 0;
 	}
 }
 
